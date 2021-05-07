@@ -33,7 +33,37 @@ class SignInPage extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          CustomElevatedButton(),
+          CustomElevatedButton(
+            child: Text(
+            "Sign In with Google",
+            style: TextStyle(
+              color: Colors.black87,
+              fontSize: 15.0,
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(4.0)),
+            primary: Colors.white,
+          ),
+          onPressed: () {},
+          ),
+
+          CustomElevatedButton(
+            child: Text(
+            "Sign In with Facebook",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 15.0,
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(4.0)),
+            primary: Colors.blue[800],
+          ),
+          onPressed: () {},
+          ),
         ],
       ),
     );
