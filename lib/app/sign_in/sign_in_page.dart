@@ -58,8 +58,8 @@ class SignInPage extends StatelessWidget {
             ),
           ),
           style: ElevatedButton.styleFrom(
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(4.0)),
+            // shape: new RoundedRectangleBorder(
+            //     borderRadius: new BorderRadius.circular(4.0)),
             primary: Colors.blue[800],
           ),
           onPressed: () {},
