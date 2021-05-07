@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Time Tracker',
-      theme: ThemeData(primarySwatch: Colors.brown, platform: TargetPlatform.iOS,),
+      theme: ThemeData(primarySwatch: Colors.brown, ),
       home: SignInPage(),
     );
   }

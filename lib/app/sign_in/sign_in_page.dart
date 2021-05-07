@@ -7,7 +7,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Tracker'),
+        title: Text('Time Tracker', textAlign: TextAlign.end, ),
         elevation: 2.0,
       ),
       body: _buildContent(),
@@ -58,8 +58,8 @@ class SignInPage extends StatelessWidget {
             ),
           ),
           style: ElevatedButton.styleFrom(
-            // shape: new RoundedRectangleBorder(
-            //     borderRadius: new BorderRadius.circular(4.0)),
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(4.0)),
             primary: Colors.blue[800],
           ),
           onPressed: () {},

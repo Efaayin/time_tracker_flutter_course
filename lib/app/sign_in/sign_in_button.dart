@@ -6,17 +6,15 @@ class SignInButton extends CustomElevatedButton {
     String text,
     Color color,
     Color textColor,
-    TextStyle style,
     VoidCallback onPressed,
   }) : super(
     child: Text(
       text,
-      // style: TextStyle(
-      //   color: textColor,
-      //   fontSize: 15.0,
-      // ),
-      style: style,
-      // onPressed: onPressed,
+      style: TextStyle(
+        color: textColor,
+        fontSize: 15.0,
+      ),
     ),
+    onPressed: onPressed,
   );
 }
