@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_tracker_flutter_course/app/sign_in/sign_in_button.dart';
 
 import '../../common_widgets/custom_elevated_button.dart';
 
@@ -7,7 +8,10 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Tracker', textAlign: TextAlign.end, ),
+        title: Text(
+          'Time Tracker',
+          textAlign: TextAlign.end,
+        ),
         elevation: 2.0,
       ),
       body: _buildContent(),
@@ -35,34 +39,15 @@ class SignInPage extends StatelessWidget {
           ),
           CustomElevatedButton(
             child: Text(
-            "Sign In with Google",
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 15.0,
+              "Sign In with Facebook",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15.0,
+              ),
             ),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(4.0)),
-            primary: Colors.white,
-          ),
-          onPressed: () {},
-          ),
-
-          CustomElevatedButton(
-            child: Text(
-            "Sign In with Facebook",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15.0,
-            ),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(4.0)),
-            primary: Colors.blue[800],
-          ),
-          onPressed: () {},
+            myColor: Colors.blue[700],
+            myBorder: 4.0,
+            onPressed: () {},
           ),
         ],
       ),
