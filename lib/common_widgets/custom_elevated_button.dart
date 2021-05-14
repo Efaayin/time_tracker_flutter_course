@@ -5,16 +5,16 @@ class CustomElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final ButtonStyle style;
   final double height;
-  final Color myColor;
-  final double myBorder;
+  final Color color;
+  final double borderRadius;
 
   CustomElevatedButton(
       {this.onPressed,
       this.child,
       this.style,
       this.height: 50.0,
-      this.myColor,
-      this.myBorder});
+      this.color,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,10 @@ class CustomElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         child: child,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(myColor),
+          backgroundColor: MaterialStateProperty.all<Color>(color),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(myBorder),
+              borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),
         ),
