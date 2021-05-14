@@ -39,16 +39,10 @@ class SignInPage extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          CustomElevatedButton(
-            child: Text(
-              "Sign In with Facebook",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15.0,
-              ),
-            ),
+          SignInButton(
+            text: "Sign in with Google",
+            textColor: Colors.black87,
             color: Colors.blue[700],
-            borderRadius: 4.0,
             onPressed: () {},
           ),
         ],

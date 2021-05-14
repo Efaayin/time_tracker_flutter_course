@@ -12,7 +12,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.child,
     this.height: 50.0,
     this.color,
-    this.borderRadius,
+    this.borderRadius: 2.0,
   });
 
   @override
