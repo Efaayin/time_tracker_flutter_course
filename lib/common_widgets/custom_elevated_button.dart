@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class CustomElevatedButton extends StatelessWidget {
   final Widget child;
   final VoidCallback onPressed;
-  final ButtonStyle style;
   final double height;
   final Color color;
   final double borderRadius;
@@ -11,7 +10,6 @@ class CustomElevatedButton extends StatelessWidget {
   CustomElevatedButton({
     this.onPressed,
     this.child,
-    this.style,
     this.height: 50.0,
     this.color,
     this.borderRadius,
