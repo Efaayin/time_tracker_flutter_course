@@ -39,6 +39,35 @@ class SignInPage extends StatelessWidget {
           SizedBox(
             height: 48.0,
           ),
+          CustomElevatedButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  "images/google-logo.png",
+                  width: 50,
+                  height: 50,
+                ),
+                Text(
+                  "Sign in with Google",
+                  style: TextStyle(color: Colors.black),
+                ),
+                Opacity(
+                  child: Image.asset(
+                    "images/google-logo.png",
+                    width: 50,
+                    height: 50,
+                  ),
+                  opacity: 0,
+                ),
+              ],
+            ),
+            color: Colors.white,
+            onPressed: () {},
+          ),
+          SizedBox(
+            height: 8.0,
+          ),
           SignInButton(
             text: "Sign in with Google",
             textColor: Colors.black87,
