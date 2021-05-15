@@ -34,12 +34,3 @@ class CustomElevatedButton extends StatelessWidget {
     );
   }
 }
-
-// ButtonStyle(
-//   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-//     RoundedRectangleBorder(
-//       borderRadius: BorderRadius.circular(18.0),
-//       side: BorderSide(color: Colors.red)
-//     )
-//   )
-// )
