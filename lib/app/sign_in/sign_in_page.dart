@@ -45,8 +45,6 @@ class SignInPage extends StatelessWidget {
               children: [
                 Image.asset(
                   "images/google-logo.png",
-                  width: 50,
-                  height: 50,
                 ),
                 Text(
                   "Sign in with Google",
@@ -55,8 +53,6 @@ class SignInPage extends StatelessWidget {
                 Opacity(
                   child: Image.asset(
                     "images/google-logo.png",
-                    width: 50,
-                    height: 50,
                   ),
                   opacity: 0,
                 ),
