@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app/sign_in/sign_in_page.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
