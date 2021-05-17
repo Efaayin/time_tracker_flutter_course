@@ -48,7 +48,7 @@ class SignInPage extends StatelessWidget {
             onPressed: () {},
           ),
           SizedBox(
-            height: 8.0,
+            height: 10.0,
           ),
           SocialSignInButton(
             assetName: "images/facebook-logo.png",
@@ -58,7 +58,7 @@ class SignInPage extends StatelessWidget {
             onPressed: () {},
           ),
           SizedBox(
-            height: 8.0,
+            height: 10.0,
           ),
           SignInButton(
             text: "Sign in with Email",
@@ -67,7 +67,7 @@ class SignInPage extends StatelessWidget {
             onPressed: () {},
           ),
           SizedBox(
-            height: 8.0,
+            height: 10.0,
           ),
           Text(
             "or",
@@ -78,7 +78,7 @@ class SignInPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 8.0,
+            height: 10.0,
           ),
           SignInButton(
             text: "Go Anonymous",

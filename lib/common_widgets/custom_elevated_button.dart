@@ -10,10 +10,10 @@ class CustomElevatedButton extends StatelessWidget {
   CustomElevatedButton({
     this.onPressed,
     this.child,
-    this.height: 50.0,
+    this.height: 60.0,
     this.color,
-    this.borderRadius: 2.0,
-  });
+    this.borderRadius: 8.0,
+  }) : assert(borderRadius != null);
 
   @override
   Widget build(BuildContext context) {
