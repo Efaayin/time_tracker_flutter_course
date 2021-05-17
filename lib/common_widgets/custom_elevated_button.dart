@@ -10,7 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
   CustomElevatedButton({
     this.onPressed,
     this.child,
-    this.height: 60.0,
+    this.height: 55.0,
     this.color,
     this.borderRadius: 8.0,
   }) : assert(borderRadius != null);
@@ -18,7 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: ElevatedButton(
+      child: ElevatedButton( 
         child: child,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(color),
