@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Time Tracker',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
-        platform: TargetPlatform.iOS,
+        // platform: TargetPlatform.iOS,
       ),
       home: LandingPage(),
     );
