@@ -24,7 +24,7 @@ class LandingPage extends StatelessWidget {
           return HomePage(
             auth: auth,
           );
-        } 
+        }
         return Scaffold(
           body: Center(
             child: CircularProgressIndicator(),
