@@ -5,6 +5,7 @@ abstract class AuthBase {
   User get currentUser;
   Stream<User> authStateChanges();
   Future<User> signInAnonymously();
+  Future<User> signInWithGoogle();
   Future<void> signOut();
 }
 
@@ -23,6 +24,7 @@ class Auth implements AuthBase {
     return UserCredential.user;
   }
 
+  @override
   Future<User> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
     final googleUser = await googleSignIn.signIn();
@@ -35,10 +37,15 @@ class Auth implements AuthBase {
           accessToken: googleAuth.accessToken,
         ));
         return userCredential.user;
+      } else {
+        throw FirebaseAuthException(
+          code: 'ERROR_MISSING_GOOGLE_ID_TOKEN',
+          message: 'Missing Google ID Token',
+        );
       }
     } else {
       throw FirebaseException(
-        code: 'ERROR ABORTED BY USER',
+        code: 'ERROR_ABORTED_BY_USER',
         message: 'Sign in aborted by user',
         plugin: 'Null',
       );
