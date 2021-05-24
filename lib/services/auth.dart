@@ -22,6 +22,7 @@ class Auth implements AuthBase {
 
   @override
   Future<User> signInAnonymously() async {
+    // ignore: non_constant_identifier_names
     final UserCredential = await _firebaseAuth.signInAnonymously();
     return UserCredential.user;
   }
