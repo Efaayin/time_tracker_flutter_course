@@ -36,6 +36,12 @@ class Auth implements AuthBase {
         ));
         return userCredential.user;
       }
+    } else {
+      throw FirebaseException(
+        code: 'ERROR ABORTED BY USER',
+        message: 'Sign in aborted by user',
+        plugin: 'Null',
+      );
     }
   }
 
