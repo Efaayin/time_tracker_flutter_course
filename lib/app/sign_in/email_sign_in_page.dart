@@ -7,7 +7,6 @@ class EmailSignInPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Sign In',
-          // textAlign: TextAlign.end,
         ),
         elevation: 2.0,
       ),
