@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:time_tracker_flutter_course/app/sign_in/validators.dart';
 import 'package:time_tracker_flutter_course/common_widgets/form_submit_button.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
 enum EmailSignInFormType { signIn, register }
 
-class EmailSignInForm extends StatefulWidget {
-  const EmailSignInForm({Key key, @required this.auth}) : super(key: key);
+class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidators {
+  EmailSignInForm({Key key, @required this.auth}) : super(key: key);
   final AuthBase auth;
 
   @override
@@ -131,7 +132,6 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   }
 
   _updateState() {
-    print('email: $_email, password: $_password');
     setState(() {});
   }
 }
