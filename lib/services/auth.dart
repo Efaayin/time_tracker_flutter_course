@@ -27,6 +27,11 @@ class Auth implements AuthBase {
     return UserCredential.user;
   }
 
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
+    final userCredential = await _firebaseAuth.signInWithCredential(EmailAuthProvider.credential(email: email, password: password),);
+    return userCredential.user;
+  }
+
   @override
   Future<User> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
