@@ -6,8 +6,6 @@ import 'package:time_tracker_flutter_course/app/sign_in/sign_in_button.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/social_sign_in_button.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
-// import '../../common_widgets/custom_elevated_button.dart';
-
 class SignInPage extends StatelessWidget {
 
   Future<void> _signInAnonymously(BuildContext context) async {
