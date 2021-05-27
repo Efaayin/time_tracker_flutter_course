@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           platform: TargetPlatform.iOS,
         ),
-        home: LandingPage(
-          auth: Auth(),
-        ),
+        home: LandingPage(),
       ),
     );
   }
