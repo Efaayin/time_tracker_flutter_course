@@ -9,20 +9,19 @@ import 'package:time_tracker_flutter_course/app/sign_in/sign_in_bloc.dart';
 import 'package:time_tracker_flutter_course/common_widgets/show_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
-class SignInPage extends StatefulWidget {
+class SignInPage extends StatelessWidget {
+  const SignInPage({Key key, @required this.bloc, blob}) : super(key: key);
+
+  final SignInBloc bloc;
+
   static Widget create(BuildContext context) {
-    return Provider<SignInbloc>(
-      create: (_) => SignInbloc(),
-      child: SignInPage(),
+    return Provider<SignInBloc>(
+      create: (_) => SignInBloc(),
+      child: Consumer<SignInBloc>(
+        builder: (_, bloc, __) => SignInPage(bloc: bloc),
+      ),
     );
   }
-
-  @override
-  _SignInPageState createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
-  bool _isLoading = false;
 
   void _showSignInError(BuildContext context, Exception exception) {
     if (exception is FirebaseException &&
@@ -38,7 +37,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Future<void> _signInAnonymously(BuildContext context) async {
     try {
-      setState(() => _isLoading = true);
+      bloc.setIsLoading(true);
       final auth = Provider.of<AuthBase>(
         context,
         listen: false,
@@ -50,13 +49,13 @@ class _SignInPageState extends State<SignInPage> {
         e,
       );
     } finally {
-      setState(() => _isLoading = false);
+      bloc.setIsLoading(false);
     }
   }
 
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
-      setState(() => _isLoading = true);
+      bloc.setIsLoading(true);
       final auth = Provider.of<AuthBase>(
         context,
         listen: false,
@@ -68,13 +67,13 @@ class _SignInPageState extends State<SignInPage> {
         e,
       );
     } finally {
-      setState(() => _isLoading = false);
+      bloc.setIsLoading(false);
     }
   }
 
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
-      setState(() => _isLoading = true);
+      bloc.setIsLoading(true);
       final auth = Provider.of<AuthBase>(
         context,
         listen: false,
@@ -86,7 +85,7 @@ class _SignInPageState extends State<SignInPage> {
         e,
       );
     } finally {
-      setState(() => _isLoading = false);
+      bloc.setIsLoading(false);
     }
   }
 
@@ -101,7 +100,6 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<SignInbloc>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -110,12 +108,11 @@ class _SignInPageState extends State<SignInPage> {
         elevation: 2.0,
       ),
       body: StreamBuilder<bool>(
-        stream: bloc.isLoadingStream,
-        initialData: false,
-        builder: (context, snapshot) {
-          return _buildContent(context, snapshot.data);
-        }
-      ),
+          stream: bloc.isLoadingStream,
+          initialData: false,
+          builder: (context, snapshot) {
+            return _buildContent(context, snapshot.data);
+          }),
       backgroundColor: Colors.grey[200],
     );
   }
@@ -128,7 +125,7 @@ class _SignInPageState extends State<SignInPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(
-            child: _buildHeader(),
+            child: _buildHeader(isLoading),
             height: 50.0,
           ),
           SizedBox(
@@ -139,7 +136,7 @@ class _SignInPageState extends State<SignInPage> {
             text: "Sign in with Google",
             textColor: Colors.black87,
             color: Colors.white,
-            onPressed: _isLoading ? null : () => _signInWithGoogle(context),
+            onPressed: isLoading ? null : () => _signInWithGoogle(context),
           ),
           SizedBox(
             height: 10.0,
@@ -149,7 +146,7 @@ class _SignInPageState extends State<SignInPage> {
             text: "Sign in with Facebook",
             textColor: Colors.white,
             color: Color(0xff334d92),
-            onPressed: _isLoading ? null : () => _signInWithFacebook(context),
+            onPressed: isLoading ? null : () => _signInWithFacebook(context),
           ),
           SizedBox(
             height: 10.0,
@@ -158,7 +155,7 @@ class _SignInPageState extends State<SignInPage> {
             text: "Sign in with Email",
             textColor: Colors.white,
             color: Colors.teal[700],
-            onPressed: _isLoading ? null : () => _signInWithEmail(context),
+            onPressed: isLoading ? null : () => _signInWithEmail(context),
           ),
           SizedBox(
             height: 10.0,
@@ -178,15 +175,15 @@ class _SignInPageState extends State<SignInPage> {
             text: "Go Anonymous",
             textColor: Colors.black,
             color: Colors.lime[700],
-            onPressed: _isLoading ? null : () => _signInAnonymously(context),
+            onPressed: isLoading ? null : () => _signInAnonymously(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildHeader() {
-    if (_isLoading) {
+  Widget _buildHeader(bool isLoading) {
+    if (isLoading) {
       return Center(
         child: CircularProgressIndicator(),
       );
