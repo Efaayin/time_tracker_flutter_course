@@ -5,21 +5,20 @@ import 'package:provider/provider.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/email_sign_in_page.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/sign_in_button.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/social_sign_in_button.dart';
+import 'package:time_tracker_flutter_course/app/sign_in/sign_in_bloc.dart';
 import 'package:time_tracker_flutter_course/common_widgets/show_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class SignInPage extends StatefulWidget {
   static Widget create(BuildContext context) {
-    return Provider<SignInBloc>(
-          create: (_) => SignInBloc(),
-          child: SignInPage(),
-        );
-      }
-      @override
-      _SignInPageState createState() => _SignInPageState();
-    }
-    
-    class SignInBloc {
+    return Provider<SignInbloc>(
+      create: (_) => SignInbloc(),
+      child: SignInPage(),
+    );
+  }
+
+  @override
+  _SignInPageState createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -102,6 +101,7 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<SignInbloc>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -109,12 +109,18 @@ class _SignInPageState extends State<SignInPage> {
         ),
         elevation: 2.0,
       ),
-      body: _buildContent(context),
+      body: StreamBuilder<bool>(
+        stream: bloc.isLoadingStream,
+        initialData: false,
+        builder: (context, snapshot) {
+          return _buildContent(context, snapshot.data);
+        }
+      ),
       backgroundColor: Colors.grey[200],
     );
   }
 
-  Container _buildContent(BuildContext context) {
+  Container _buildContent(BuildContext context, bool isLoading) {
     return Container(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -133,7 +139,7 @@ class _SignInPageState extends State<SignInPage> {
             text: "Sign in with Google",
             textColor: Colors.black87,
             color: Colors.white,
-            onPressed: _isLoading ? null :() => _signInWithGoogle(context),
+            onPressed: _isLoading ? null : () => _signInWithGoogle(context),
           ),
           SizedBox(
             height: 10.0,
