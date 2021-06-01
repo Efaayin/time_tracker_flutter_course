@@ -9,8 +9,17 @@ import 'package:time_tracker_flutter_course/common_widgets/show_exception_alert_
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class SignInPage extends StatefulWidget {
-  @override
-  _SignInPageState createState() => _SignInPageState();
+  static Widget create(BuildContext context) {
+    return Provider<SignInBloc>(
+          create: (_) => SignInBloc(),
+          child: SignInPage(),
+        );
+      }
+      @override
+      _SignInPageState createState() => _SignInPageState();
+    }
+    
+    class SignInBloc {
 }
 
 class _SignInPageState extends State<SignInPage> {
