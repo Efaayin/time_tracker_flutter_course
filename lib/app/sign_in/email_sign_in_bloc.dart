@@ -38,6 +38,9 @@ class EmailSignInBloc {
     }
   }
 
+  void updateEmail(String email) => updateWith(email: email);
+  void updatePassword(String password) => updateWith(password: password);
+
   void updateWith({
     String email,
     String password,

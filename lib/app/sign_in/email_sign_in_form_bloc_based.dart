@@ -126,7 +126,7 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
       obscureText: true,
       textInputAction: TextInputAction.done,
       onEditingComplete: _submit,
-      onChanged: (password) => widget.bloc.updateWith(password: password),
+      onChanged: widget.bloc.updatePassword,
     );
   }
 
@@ -145,7 +145,7 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       onEditingComplete: () => _emailEditingComplete(model),
-      onChanged: (email) => widget.bloc.updateWith(email: email),
+      onChanged: widget.bloc.updateEmail,
     );
   }
 
