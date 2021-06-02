@@ -17,6 +17,36 @@ class EmailSignInModel with EmailAndPasswordValidators {
   final bool isLoading;
   final bool submitted;
 
+  String get primaryButtonText {
+    return formType == EmailSignInFormType.signIn
+        ? 'Sign In'
+        : 'Create an account';
+  }
+
+  String get secondaryButtonText {
+    return formType == EmailSignInFormType.signIn
+        ? 'Need an account? Register'
+        : 'Have an account? Sign In';
+  }
+
+  bool get canSubmit {
+    return emailValidator.isValid(email) &&
+        passwordValidator.isValid(password) &&
+        !isLoading;
+  }
+
+  String get passwordErrorText {
+    bool showErrorText = submitted && !passwordValidator.isValid(password);
+
+    return showErrorText ? invalidPasswordErrorText : null;
+  }
+
+  String get emailErrorText {
+    bool showErrorText = submitted && !emailValidator.isValid(email);
+
+    return showErrorText ? invalidEmailErrorText : null;
+  }
+
   EmailSignInModel copyWith({
     final String email,
     final String password,
