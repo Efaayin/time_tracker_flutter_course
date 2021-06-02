@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:time_tracker_flutter_course/app/sign_in/email_sign_in_model.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
-class EmailSignInBloc { 
+class EmailSignInBloc {
   EmailSignInBloc({@required this.auth});
   final AuthBase auth;
 
@@ -19,7 +19,10 @@ class EmailSignInBloc {
   }
 
   Future<void> submit() async {
-    updateWith(submitted: true, isLoading: true,);
+    updateWith(
+      submitted: true,
+      isLoading: true,
+    );
     try {
       if (_model.formType == EmailSignInFormType.signIn) {
         await auth.signInWithEmailAndPassword(
@@ -33,12 +36,28 @@ class EmailSignInBloc {
         );
       }
     } catch (e) {
-      updateWith(isLoading: false,);
+      updateWith(
+        isLoading: false,
+      );
       rethrow;
     }
   }
 
+  void toggleFormType() {
+    final formType = _model.formType == EmailSignInFormType.signIn
+        ? EmailSignInFormType.register
+        : EmailSignInFormType.signIn;
+    updateWith(
+      email: '',
+      password: '',
+      formType: formType,
+      isLoading: false,
+      submitted: false,
+    );
+  }
+
   void updateEmail(String email) => updateWith(email: email);
+
   void updatePassword(String password) => updateWith(password: password);
 
   void updateWith({
