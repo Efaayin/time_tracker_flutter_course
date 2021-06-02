@@ -10,7 +10,7 @@ import 'package:time_tracker_flutter_course/common_widgets/form_submit_button.da
 import 'package:time_tracker_flutter_course/common_widgets/show_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
-class EmailSignInFormBlocBased extends StatefulWidget with EmailAndPasswordValidators {
+class EmailSignInFormBlocBased extends StatefulWidget {
 
   EmailSignInFormBlocBased({Key key, this.bloc}) : super(key: key);
   final EmailSignInBloc bloc;
@@ -61,13 +61,14 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
   }
 
   void _emailEditingComplete(EmailSignInModel model) {
-    final newFocus = widget.emailValidator.isValid(model.email)
+    final newFocus = model.emailValidator.isValid(model.email)
         ? _passwordFocusNode
         : _emailFocusNode;
     FocusScope.of(context).requestFocus(newFocus);
   }
 
-  void _toggleFormType(EmailSignInModel model) {
+  void _toggleFormType() {
+    widget.bloc.toggleFormType();
     _emailController.clear();
     _passwordController.clear();
   }
@@ -80,8 +81,8 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
         ? 'Need an account? Register'
         : 'Have an account? Sign In';
 
-    bool submitEnabled = widget.emailValidator.isValid(model.email) &&
-        widget.passwordValidator.isValid(model.password) &&
+    bool submitEnabled = model.emailValidator.isValid(model.email) &&
+        model.passwordValidator.isValid(model.password) &&
         !model.isLoading;
 
     return [
@@ -95,7 +96,7 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
       ),
       SizedBox(height: 8.0),
       TextButton(
-        onPressed: !model.isLoading ? () => _toggleFormType(model) : null,
+        onPressed: !model.isLoading ? _toggleFormType : null,
         child: Text(
           secondaryText,
         ),
@@ -105,13 +106,13 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
 
   TextField _buildPasswordTextField(EmailSignInModel model) {
     bool showErrorText =
-        model.submitted && !widget.passwordValidator.isValid(model.password);
+        model.submitted && !model.passwordValidator.isValid(model.password);
     return TextField(
       controller: _passwordController,
       focusNode: _passwordFocusNode,
       decoration: InputDecoration(
         labelText: 'Password',
-        errorText: showErrorText ? widget.invalidPasswordErrorText : null,
+        errorText: showErrorText ? model.invalidPasswordErrorText : null,
         enabled: model.isLoading == false,
       ),
       obscureText: true,
@@ -122,14 +123,14 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
   }
 
   TextField _buildEmailTextField(EmailSignInModel model) {
-    bool showErrorText = model.submitted && !widget.emailValidator.isValid(model.email);
+    bool showErrorText = model.submitted && !model.emailValidator.isValid(model.email);
     return TextField(
       controller: _emailController,
       focusNode: _emailFocusNode,
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'test@test.com',
-        errorText: showErrorText ? widget.invalidEmailErrorText : null,
+        errorText: showErrorText ? model.invalidEmailErrorText : null,
         enabled: model.isLoading == false,
       ),
       autocorrect: false,
