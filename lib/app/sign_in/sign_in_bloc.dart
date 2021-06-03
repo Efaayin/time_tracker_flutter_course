@@ -7,6 +7,7 @@ import 'package:time_tracker_flutter_course/services/auth.dart';
 class SignInBloc {
   SignInBloc({@required this.auth});
   final AuthBase auth;
+  // final ValueNotifier<bool> isLoading;
 
   final StreamController<bool> _isLoadingController = StreamController<bool>();
 
