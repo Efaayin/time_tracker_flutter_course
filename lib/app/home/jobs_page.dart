@@ -4,10 +4,12 @@ import 'package:time_tracker_flutter_course/common_widgets/show_alert_dialog.dar
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class JobsPage extends StatelessWidget {
-
   Future<void> _signOut(BuildContext context) async {
     try {
-      final auth = Provider.of<AuthBase>(context, listen: false,);
+      final auth = Provider.of<AuthBase>(
+        context,
+        listen: false,
+      );
       await auth.signOut();
     } catch (e) {
       print(e.toString());
@@ -45,6 +47,10 @@ class JobsPage extends StatelessWidget {
             onPressed: () => _confirmSignOut(context),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: null,
       ),
     );
   }
