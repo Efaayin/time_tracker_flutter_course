@@ -90,6 +90,11 @@ class JobsPage extends StatelessWidget {
             children: children,
           );
         }
+        if (snapshot.hasError) {
+          return Center(
+            child: Text('Some error occured'),
+          );
+        }
         return Center(
           child: CircularProgressIndicator(),
         );
