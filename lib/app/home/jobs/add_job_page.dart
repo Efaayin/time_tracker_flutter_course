@@ -103,7 +103,7 @@ class _AddJobPageState extends State<AddJobPage> {
         decoration: InputDecoration(
           labelText: 'Job Name',
         ),
-        onSaved: (value) => _name = value,
+        onSaved: (value) => _name = (value) ?? '',
         validator: (value) => value.isNotEmpty ? null : "Name can't be empty",
       ),
       TextFormField(
