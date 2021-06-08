@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:time_tracker_flutter_course/app/home/models/job.dart';
+import 'package:time_tracker_flutter_course/services/database.dart';
 
 class AddJobPage extends StatefulWidget {
-  // const AddJobPage({ Key? key }) : super(key: key);
+  const AddJobPage({Key key, @required this.database}) : super(key: key);
+  final Database database;
 
   static Future<void> show(BuildContext context) async {
+    final database = Provider.of<Database>(context, listen: false);
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => AddJobPage(),
+        builder: (context) => AddJobPage(
+          database: database,
+        ),
         fullscreenDialog: true,
       ),
     );
@@ -17,22 +24,28 @@ class AddJobPage extends StatefulWidget {
 }
 
 class _AddJobPageState extends State<AddJobPage> {
-
   final _formKey = GlobalKey<FormState>();
+
+  String _name;
+  int _ratePerHour;
 
   bool _valiadteAndSaveForm() {
     final form = _formKey.currentState;
 
-    if(form.validate()) {
+    if (form.validate()) {
       form.save();
       return true;
     }
     return false;
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     if (_valiadteAndSaveForm()) {
-      print('Form Saved');
+      final job = Job(
+        name: _name,
+        ratePerHour: _ratePerHour,
+      );
+      await widget.database.createJob(job);
     }
   }
 
@@ -90,6 +103,8 @@ class _AddJobPageState extends State<AddJobPage> {
         decoration: InputDecoration(
           labelText: 'Job Name',
         ),
+        onSaved: (value) => _name = value,
+        validator: (value) => value.isNotEmpty ? null : "Name can't be empty",
       ),
       TextFormField(
         decoration: InputDecoration(
@@ -99,6 +114,7 @@ class _AddJobPageState extends State<AddJobPage> {
           signed: false,
           decimal: false,
         ),
+        onSaved: (value) => _ratePerHour = int.tryParse(value) ?? 0,
       ),
     ];
   }
