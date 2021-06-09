@@ -146,7 +146,7 @@ class _EditJobPageState extends State<EditJobPage> {
         decoration: InputDecoration(
           labelText: 'Rate per Hour',
         ),
-        initialValue: '$_ratePerHour',
+        initialValue: _ratePerHour != null ? '$_ratePerHour' : null,
         keyboardType: TextInputType.numberWithOptions(
           signed: false,
           decimal: false,
