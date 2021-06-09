@@ -71,7 +71,7 @@ class JobsPage extends StatelessWidget {
               .map(
                 (job) => JobListTile(
                   job: job,
-                  onTap: () {},
+                  onTap: () => EditJobPage.show(context, job: job),
                 ),
               )
               .toList();
