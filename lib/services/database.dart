@@ -8,6 +8,12 @@ abstract class Database {
   Future<void> setJob(Job job);
   Future<void> deleteJob(Job job);
   Stream<List<Job>> jobsStream();
+
+  entriesStream({Job job}) {}
+
+  deleteEntry(Entry entry) {}
+
+  setEntry(Entry entry) {}
 }
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
