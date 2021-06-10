@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_flutter_course/app/home/job_entries/job_entries_page.dart';
@@ -56,7 +57,16 @@ class JobsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Jobs'),
-        actions: [
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () => EditJobPage(
+              database: Provider.of<Database>(context, listen: false),
+            ),
+          ),
           TextButton(
             child: Text(
               'Logout',
@@ -70,13 +80,6 @@ class JobsPage extends StatelessWidget {
         ],
       ),
       body: _buildContents(context),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => EditJobPage.show(
-          context,
-          database: Provider.of<Database>(context, listen: false),
-        ),
-      ),
     );
   }
 
