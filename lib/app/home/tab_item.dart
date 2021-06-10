@@ -9,7 +9,7 @@ class TabItemData {
 
   static const Map<TabItem, TabItemData> allTabs = {
     TabItem.jobs: TabItemData(title: 'Jobs', icon: Icons.work),
-    TabItem.entries: TabItemData(title: 'Jobs', icon: Icons.view_headline),
-    TabItem.account: TabItemData(title: 'Jobs', icon: Icons.person),
+    TabItem.entries: TabItemData(title: 'Entries', icon: Icons.view_headline),
+    TabItem.account: TabItemData(title: 'Account', icon: Icons.person),
   };
 }
