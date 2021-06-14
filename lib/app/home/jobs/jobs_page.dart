@@ -35,8 +35,12 @@ class JobsPage extends StatelessWidget {
               Icons.add,
               color: Colors.white,
             ),
-            onPressed: () => EditJobPage(
-              database: Provider.of<Database>(context, listen: false),
+            onPressed: () => EditJobPage.show(
+              context,
+              database: Provider.of<Database>(
+                context,
+                listen: false,
+              ),
             ),
           ),
         ],
